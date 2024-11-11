@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniReactWithJSX</title>
+    <link rel="icon" type="image/svg+xml" href="minireact.svg" />
+</head>
+<body>
+<div class="container">
+    <div id="root"></div>
+    <div id="realdom"></div>
+</div>
+<script type="module" src="App.tsx"></script>
+</body>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+
+    #root {
+        width: 50%;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        height: 100%;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    #root::-webkit-scrollbar {
+        display: none;
+    }
+
+    #realdom {
+        width: 50%;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-left: 1px solid #ccc;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        height: 100%;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    #realdom::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+</html>
