@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MiniReactWithJSX</title>
+    <title>正在加载中...</title>
     <link rel="icon" type="image/svg+xml" href="minireact.svg" />
 </head>
 <body>
@@ -13,7 +13,12 @@
 </div>
 <script  src="minireact.js"></script>
 <script src="echarts.min.js"></script>
-<script>
+<script defer>
+    window.onload = function () {
+        console.log("所有资源都加载完毕 页面准备好了");
+        document.title = "MiniReactWithJSX";
+        startApp();
+    };
     const App = () => {
         const [elements, setElements] = Dong.useState([1, 2, 3, 4, 5]);
         const [data, setData] = Dong.useState(114514);
@@ -187,22 +192,25 @@
     };
 
 
-    //我不知道为什么,也许是echars的依赖太大了,让我的渲染机制随机失效,我尝试放入了下一次事件循环
-    setTimeout(() => {
-        // 渲染组件
-        const root = document.getElementById("root");
-        if (root) {
-            Dong.render(Dong.createElement(App, null), root);
-        }
-        const realDomContainer = document.getElementById('realdom');
-        if (realDomContainer) {
-            realDomContainer.innerHTML = `
+    //我不知道为什么,也许是echarts的依赖太大了,让我的渲染机制随机失效,我尝试放入了下一次事件循环
+    function startApp() {
+        setTimeout(() => {
+            // 渲染组件
+            const root = document.getElementById("root");
+            if (root) {
+                Dong.render(Dong.createElement(App, null), root);
+            }
+            const realDomContainer = document.getElementById('realdom');
+            if (realDomContainer) {
+                realDomContainer.innerHTML = `
             <h2>虚拟 DOM 展示</h2>
             <div>这段内容已脱离虚拟DOM管理, MiniReact无法感知到这部分的变化</div>
             <pre>${Dong.useAware()[0]}</pre>
         `;
-        }
-    }, 0);
+            }
+        }, 0);
+    }
+
 
 </script>
 </body>
