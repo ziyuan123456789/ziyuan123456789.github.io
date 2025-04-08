@@ -186,12 +186,14 @@
 
     };
 
-    // 渲染组件
-    const root = document.getElementById("root");
-    if (root) {
-        Dong.render(Dong.createElement(App, null), root);
-    }
+
+    //我不知道为什么,也许是echars的依赖太大了,让我的渲染机制随机失效,我尝试放入了下一次事件循环
     setTimeout(() => {
+        // 渲染组件
+        const root = document.getElementById("root");
+        if (root) {
+            Dong.render(Dong.createElement(App, null), root);
+        }
         const realDomContainer = document.getElementById('realdom');
         if (realDomContainer) {
             realDomContainer.innerHTML = `
