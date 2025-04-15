@@ -14,11 +14,11 @@
 <script  defer src="minireact.js"></script>
 <script defer src="echarts.min.js"></script>
 <script defer>
-    document.addEventListener("DOMContentLoaded", function () {
-        alert("JS加载完成，如果你发现后续虚拟DOM没有正常渲染,那么请F5刷新几次页面吧，我也不知道为什么会这样，我的本地环境无法复现，我猜测是JS加载的问题")
+    window.onload = function () {
+        alert("JS加载完成，DOM也加载完成了，如果虚拟DOM渲染异常，请手动刷新。");
         document.title = "MiniReactWithJSX";
         startApp();
-    });
+    };
     const App = () => {
         const [elements, setElements] = Dong.useState([1, 2, 3, 4, 5]);
         const [data, setData] = Dong.useState(114514);
