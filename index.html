@@ -11,9 +11,12 @@
     <div id="root"></div>
     <div id="realdom"></div>
 </div>
-<script defer src="echarts.min.js"></script>
-<script  defer src="minireact.js"></script>
-<script defer src="app.js"></script>
+<script type="module">
+    import './minireact.js';
+    import './echarts.min.js';
+    import './app.js';
+</script>
+
 </body>
 <style>
     body {

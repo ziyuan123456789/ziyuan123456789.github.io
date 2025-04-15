@@ -180,7 +180,7 @@ function startApp() {
 }
 
 window.onload = function () {
-    alert("JS加载完成，DOM也加载完成了");
+    alert("JS加载完成,如果虚拟DOM渲染异常请刷新");
     document.title = "MiniReactWithJSX";
     startApp();
 };
