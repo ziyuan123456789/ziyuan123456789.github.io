@@ -1,6 +1,7 @@
+//Babel转化后代码如下:
 function Square({ value, onSquareClick }) {
     return /* @__PURE__ */ Dong.createElement(
-        "button",
+        "div",
         {
             style: {
                 width: "50px",
@@ -19,7 +20,7 @@ function Square({ value, onSquareClick }) {
         value
     );
 }
-function Board({ xIsNext, squares, onPlay }) {
+const Board = ({ xIsNext, squares, onPlay }) => {
     function handleClick(i) {
         if (calculateWinner(squares) || squares[i]) {
             return;
@@ -40,7 +41,7 @@ function Board({ xIsNext, squares, onPlay }) {
         status = "Next player: " + (xIsNext ? "X" : "O");
     }
     return /* @__PURE__ */ Dong.createElement("div", { style: { display: "flex", flexDirection: "column", marginBottom: "20px" } }, /* @__PURE__ */ Dong.createElement("div", { style: { fontSize: "20px", marginBottom: "20px" } }, status), /* @__PURE__ */ Dong.createElement("div", { style: { display: "flex", justifyContent: "center", marginBottom: "5px" } }, /* @__PURE__ */ Dong.createElement(Square, { value: squares[0], onSquareClick: () => handleClick(0) }), /* @__PURE__ */ Dong.createElement(Square, { value: squares[1], onSquareClick: () => handleClick(1) }), /* @__PURE__ */ Dong.createElement(Square, { value: squares[2], onSquareClick: () => handleClick(2) })), /* @__PURE__ */ Dong.createElement("div", { style: { display: "flex", justifyContent: "center", marginBottom: "5px" } }, /* @__PURE__ */ Dong.createElement(Square, { value: squares[3], onSquareClick: () => handleClick(3) }), /* @__PURE__ */ Dong.createElement(Square, { value: squares[4], onSquareClick: () => handleClick(4) }), /* @__PURE__ */ Dong.createElement(Square, { value: squares[5], onSquareClick: () => handleClick(5) })), /* @__PURE__ */ Dong.createElement("div", { style: { display: "flex", justifyContent: "center" } }, /* @__PURE__ */ Dong.createElement(Square, { value: squares[6], onSquareClick: () => handleClick(6) }), /* @__PURE__ */ Dong.createElement(Square, { value: squares[7], onSquareClick: () => handleClick(7) }), /* @__PURE__ */ Dong.createElement(Square, { value: squares[8], onSquareClick: () => handleClick(8) })));
-}
+};
 function calculateWinner(squares) {
     const lines = [
         [0, 1, 2],
@@ -60,6 +61,22 @@ function calculateWinner(squares) {
     }
     return null;
 }
+const Parent = () => {
+    const [num, setNum] = Dong.useState(0);
+    const computeResult = Dong.useMemo(() => {
+        console.error("useMemo\u8BA1\u7B97");
+        return /* @__PURE__ */ Dong.createElement("h4", null, num);
+    }, [num]);
+    return /* @__PURE__ */ Dong.createElement("div", null, computeResult, /* @__PURE__ */ Dong.createElement(
+        "h5",
+        {
+            onClick: () => {
+                setNum(num + 1);
+            }
+        },
+        "useMemo\u6D4B\u8BD5"
+    ));
+};
 function App() {
     const divRef = Dong.useRef(null);
     const [position, setPosition] = Dong.useState({
@@ -70,7 +87,6 @@ function App() {
     const [currentMove, setCurrentMove] = Dong.useState(0);
     const xIsNext = currentMove % 2 === 0;
     const currentSquares = history[currentMove];
-    const [elements, setElements] = Dong.useState([1, 2, 3, 4, 5]);
     const [data, setData] = Dong.useState(114514);
     const [backgroundColor, setBackgroundColor] = Dong.useState("");
     const [xData, setXData] = Dong.useState([]);
@@ -190,14 +206,14 @@ function App() {
             };
         }, 0);
     }, [data]);
-    return /* @__PURE__ */ Dong.createElement("div", { id: "app" }, /* @__PURE__ */ Dong.createElement(
+    return /* @__PURE__ */ Dong.createElement("div", { id: "app", style: { fontFamily: "sans-serif", padding: "2rem", maxWidth: "960px", margin: "0 auto" } }, /* @__PURE__ */ Dong.createElement(
         "h1",
         {
-            style: { backgroundColor, transition: "background 0.5s" },
+            style: { backgroundColor, transition: "background 0.5s", padding: "1rem", borderRadius: "8px" },
             onClick: handleClick
         },
-        "MiniReact - \u70B9\u51FB\u89E6\u53D1\u4E00\u6B21 useState"
-    ), /* @__PURE__ */ Dong.createElement("h2", null, "\u6253\u5F00F12\u67E5\u770BMiniReact\u5DE5\u4F5C\u8BE6\u60C5 \u5F53\u5DEE\u5F02\u51FA\u73B0\u4F1A\u7ED8\u5236\u4E00\u4E2A\u6DE1\u84DD\u8272\u7684\u8FB9\u6846\u5305\u88F9\u4F4F\u66F4\u65B0\u7684\u5143\u7D20"), /* @__PURE__ */ Dong.createElement("h2", null, data), /* @__PURE__ */ Dong.createElement("h2", null, "\u6765\u8BD5\u4E00\u4E0B\u4E95\u5B57\u68CB\u6E38\u620F,\u56DE\u5473\u4E00\u4E0BReact\u5B98\u7F51\u7684\u6559\u7A0B"), /* @__PURE__ */ Dong.createElement("div", { className: "game" }, /* @__PURE__ */ Dong.createElement("div", { className: "game-board" }, /* @__PURE__ */ Dong.createElement(Board, { xIsNext, squares: currentSquares, onPlay: handlePlay }))), /* @__PURE__ */ Dong.createElement("h2", null, "\u6765\u8BD5\u4E00\u4E0B\u79FB\u52A8\u5C0F\u7403"), /* @__PURE__ */ Dong.createElement("h2", null, "MiniReact\u901A\u8FC7\u66F4\u6539className\u6765\u6807\u8BB0\u53D8\u52A8\u7684\u8282\u70B9,\u53E6\u5916\u53F3\u4FA7\u9891\u7E41\u66F4\u65B0\u8282\u70B9\u4E5F\u4F1A\u9020\u6210\u79FB\u52A8\u5C0F\u7403\u5F88\u5361,\u4F60\u53EF\u4EE5\u90FD\u6CE8\u91CA\u6389\u4EE5\u63D0\u5347\u5E27\u7387"), /* @__PURE__ */ Dong.createElement(
+        "\u{1F3AF} MiniReact - \u70B9\u51FB\u89E6\u53D1\u4E00\u6B21 useState"
+    ), /* @__PURE__ */ Dong.createElement("p", { style: { color: "#888", fontSize: "15px" } }, "\u5F53useState\u9020\u6210\u6570\u636E\u53D8\u52A8\u540E,MiniReact\u901A\u8FC7diff\u7B97\u6CD5\u627E\u51FA\u66F4\u65B0/\u63D2\u5165\u7684\u8282\u70B9,\u7ED8\u5236\u6DE1\u84DD\u8272\u8FB9\u6846\u4EE5\u63D0\u793A\u66F4\u65B0"), /* @__PURE__ */ Dong.createElement("section", { style: { marginTop: "2rem" } }, /* @__PURE__ */ Dong.createElement("h2", null, "\u{1F4D8} React \u5B98\u65B9\u6559\u7A0B\u7684\u4E95\u5B57\u68CB\u6E38\u620F"), /* @__PURE__ */ Dong.createElement("div", { className: "game", style: { display: "flex", justifyContent: "center" } }, /* @__PURE__ */ Dong.createElement("div", { className: "game-board" }, /* @__PURE__ */ Dong.createElement(Board, { xIsNext, squares: currentSquares, onPlay: handlePlay })))), /* @__PURE__ */ Dong.createElement("section", { style: { marginTop: "2rem" } }, /* @__PURE__ */ Dong.createElement("h2", null, "\u{1F388} \u6765\u8BD5\u4E00\u4E0B\u79FB\u52A8\u5C0F\u7403"), /* @__PURE__ */ Dong.createElement("p", { style: { color: "#888", fontSize: "14px" } }, "\u5728\u9F20\u6807\u79FB\u52A8\u8FD9\u6837\u7684\u60C5\u5883\u6027\u4E2D\u63A7\u5236\u53F0\u9891\u7E41\u8F93\u51FA\u4F1A\u9020\u6210\u6389\u5E27,\u5EFA\u8BAE\u5173\u95ED Console \u63D0\u5347\u5E27\u7387"), /* @__PURE__ */ Dong.createElement(
         "div",
         {
             ref: divRef,
@@ -207,7 +223,10 @@ function App() {
                 width: "40vw",
                 height: "40vh",
                 backgroundColor: "#f0f0f0",
-                overflow: "hidden"
+                border: "1px solid #ddd",
+                borderRadius: "12px",
+                overflow: "hidden",
+                marginTop: "1rem"
             }
         },
         /* @__PURE__ */ Dong.createElement(
@@ -219,19 +238,18 @@ function App() {
                     borderRadius: "50%",
                     transform: `translate(${position.x - 10}px, ${position.y - 10}px)`,
                     width: "20px",
-                    height: "20px"
+                    height: "20px",
+                    transition: "transform 0.05s linear"
                 }
             }
         )
-    ), /* @__PURE__ */ Dong.createElement("input", { ref: inputRef }), /* @__PURE__ */ Dong.createElement("button", { onClick: handleRef }, "\u70B9\u51FB\u83B7\u53D6\u8F93\u5165\u6846\u5185\u5BB9"), /* @__PURE__ */ Dong.createElement(
-        "button",
+    )), /* @__PURE__ */ Dong.createElement("section", { style: { marginTop: "2rem" } }, /* @__PURE__ */ Dong.createElement("h2", null, "\u{1F9EA} useRef\u4E0EuseCallBack/useMemo\u6D4B\u8BD5"), /* @__PURE__ */ Dong.createElement(
+        "input",
         {
-            onClick: Dong.useCallBack(() => setElements((temp) => [...temp, ...temp]), [])
-        },
-        "\u70B9\u51FB\u89E6\u53D1\u4E00\u6B21useState,\u590D\u5236\u6570\u7EC4 [...temp, ...temp]"
-    ), /* @__PURE__ */ Dong.createElement("div", { ref: chartRef, style: { width: "600px", height: "400px" } }), /* @__PURE__ */ Dong.createElement("ul", null, elements.map((item, index) => {
-        return /* @__PURE__ */ Dong.createElement("li", { key: index }, item);
-    })));
+            ref: inputRef,
+            style: { padding: "8px", border: "1px solid #ccc", borderRadius: "4px", width: "200px" }
+        }
+    ), /* @__PURE__ */ Dong.createElement("button", { onClick: handleRef, style: { marginLeft: "1rem" } }, "\u70B9\u51FB\u83B7\u53D6\u8F93\u5165\u6846\u5185\u5BB9"), /* @__PURE__ */ Dong.createElement("div", { ref: chartRef, style: { width: "400px", height: "400px" } }), /* @__PURE__ */ Dong.createElement(Parent, null)));
 }
 const root = document.getElementById("root");
 if (root) {
