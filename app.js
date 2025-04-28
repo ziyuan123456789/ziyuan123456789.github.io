@@ -253,20 +253,13 @@ function App() {
 }
 
 function startApp() {
-    setTimeout(() => {
-        const root = document.getElementById("root");
-        if (root) {
-            Dong.render(/* @__PURE__ */ Dong.createElement(App, null), root);
-        }
-        const realDomContainer = document.getElementById("realdom");
-        if (realDomContainer) {
-            realDomContainer.innerHTML = `
+    Dong.render(/* @__PURE__ */ Dong.createElement(App, null), document.getElementById("root"));
+    const realDomContainer = document.getElementById("realdom");
+    realDomContainer.innerHTML = `
         <h2>\u865A\u62DF DOM \u5C55\u793A</h2>
         <div>\u8FD9\u6BB5\u5185\u5BB9\u5DF2\u8131\u79BB\u865A\u62DFDOM\u7BA1\u7406,MiniReact\u65E0\u6CD5\u611F\u77E5\u5230\u8FD9\u90E8\u5206\u7684\u53D8\u5316</div>
         <pre>${Dong.useAware()[0]}</pre>
     `;
-        }
-    }, 0);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
