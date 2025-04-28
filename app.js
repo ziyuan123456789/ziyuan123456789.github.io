@@ -251,30 +251,33 @@ function App() {
         }
     ), /* @__PURE__ */ Dong.createElement("button", { onClick: handleRef, style: { marginLeft: "1rem" } }, "\u70B9\u51FB\u83B7\u53D6\u8F93\u5165\u6846\u5185\u5BB9"), /* @__PURE__ */ Dong.createElement("div", { ref: chartRef, style: { width: "400px", height: "400px" } }), /* @__PURE__ */ Dong.createElement(Parent, null)));
 }
-const root = document.getElementById("root");
-if (root) {
-    Dong.render(/* @__PURE__ */ Dong.createElement(App, null), root);
-}
-const realDomContainer = document.getElementById("realdom");
-if (realDomContainer) {
-    realDomContainer.innerHTML = `
-        <h2>\u865A\u62DF DOM \u5C55\u793A</h2>
-        <div>\u8FD9\u6BB5\u5185\u5BB9\u5DF2\u8131\u79BB\u865A\u62DFDOM\u7BA1\u7406,MiniReact\u65E0\u6CD5\u611F\u77E5\u5230\u8FD9\u90E8\u5206\u7684\u53D8\u5316</div>
-        <pre>${Dong.useAware()[0]}</pre>
-    `;
-}
 
 function startApp() {
     setTimeout(() => {
         const root = document.getElementById("root");
         if (root) {
-            Dong.render(Dong.createElement(App, null), root);
+            Dong.render(/* @__PURE__ */ Dong.createElement(App, null), root);
+        }
+        const realDomContainer = document.getElementById("realdom");
+        if (realDomContainer) {
+            realDomContainer.innerHTML = `
+        <h2>\u865A\u62DF DOM \u5C55\u793A</h2>
+        <div>\u8FD9\u6BB5\u5185\u5BB9\u5DF2\u8131\u79BB\u865A\u62DFDOM\u7BA1\u7406,MiniReact\u65E0\u6CD5\u611F\u77E5\u5230\u8FD9\u90E8\u5206\u7684\u53D8\u5316</div>
+        <pre>${Dong.useAware()[0]}</pre>
+    `;
         }
     }, 0);
 }
 
-window.onload = function () {
-    alert("JS加载完成,如果虚拟DOM渲染异常请刷新");
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.getElementById("root");
+    if (root) {
+        alert("页面加载完成,如果虚拟DOM渲染异常请刷新");
+    } else {
+        alert("页面加载失败,即将刷新");
+        window.location.reload();
+    }
     document.title = "MiniReactWithJSX";
     startApp();
-};
+})
+
