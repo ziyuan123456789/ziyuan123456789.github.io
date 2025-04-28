@@ -253,8 +253,8 @@ function App() {
 }
 
 function startApp() {
-    Dong.render(/* @__PURE__ */ Dong.createElement(App, null), document.getElementById("root"));
-    const realDomContainer = document.getElementById("realdom");
+    Dong.render(/* @__PURE__ */ Dong.createElement(App, null), document.querySelector(".container #root"));
+    const realDomContainer = document.querySelector(".container #realdom");
     realDomContainer.innerHTML = `
         <h2>\u865A\u62DF DOM \u5C55\u793A</h2>
         <div>\u8FD9\u6BB5\u5185\u5BB9\u5DF2\u8131\u79BB\u865A\u62DFDOM\u7BA1\u7406,MiniReact\u65E0\u6CD5\u611F\u77E5\u5230\u8FD9\u90E8\u5206\u7684\u53D8\u5316</div>
@@ -263,14 +263,33 @@ function startApp() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const root = document.getElementById("root");
+    const root = document.querySelector(".container #root");
     if (root) {
-        alert("页面加载完成,如果虚拟DOM渲染异常请刷新");
+        alert("挂载一个监听器看看虚拟DOM是否渲染成功");
+        startApp()
+        const checkApp = () => {
+            const app = root.querySelector("#app");
+            if (app) {
+                alert("页面渲染完成");
+                clearInterval(interval);
+            } else {
+                alert("页面渲染异常,重新调用 startApp");
+                startApp();
+            }
+        };
+        const interval = setInterval(() => {
+            checkApp();
+        }, 500);
+        setTimeout(() => {
+            clearInterval(interval);
+        }, 5000);
     } else {
         alert("页面加载失败,即将刷新");
+        console.log("当前页面 DOM 结构:", document.body.innerHTML);
         window.location.reload();
     }
+
     document.title = "MiniReactWithJSX";
-    startApp();
-})
+});
+
 
