@@ -93,6 +93,9 @@ var Dong = (() => {
         console.warn("\u7A7A\u95F2\u65F6\u95F4\u8017\u5C3D\uFF0C\u751F\u6210\u865A\u62DF DOM \u88AB\u6253\u65AD\uFF0C\u7B49\u5F85\u4E0B\u6B21\u8C03\u5EA6\u4EE5\u4FBF\u4ECE\u4E0A\u6B21\u4E2D\u65AD\u7684\u5730\u65B9\u7EE7\u7EED");
       }
     }
+    if (nextFiberReconcileWork) {
+      requestIdleCallback(workLoop);
+    }
     if (!nextFiberReconcileWork && wipRoot) {
       commitRoot();
     }
@@ -485,7 +488,6 @@ var Dong = (() => {
     };
     currentFiber.hooks.push(hook);
     hookIndex++;
-    console.error(memoizedValue);
     return memoizedValue;
   }
   function useCallBack(callback, deps) {
